@@ -8,8 +8,8 @@ app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     description="Restaurant management system API Gateway",
-    docs_url="/doc",  
-    openapi_url="/openapi.json"  
+    docs_url="/doc",
+    openapi_url="/openapi.json"
 )
 
 # CORS configuration
@@ -24,25 +24,25 @@ app.add_middleware(
 # Routes registration
 app.include_router(
     customers.router,
-    prefix=f"/customers",
+    prefix="/customers",
     tags=["customers"]
 )
 
 app.include_router(
     orders.router,
-    prefix=f"/orders",
+    prefix="/orders",
     tags=["orders"]
 )
 
 app.include_router(
     kitchen.router,
-    prefix=f"/kitchen",
+    prefix="/kitchen",
     tags=["kitchen"]
 )
 
 app.include_router(
     delivery.router,
-    prefix=f"/delivery",
+    prefix="/delivery",
     tags=["delivery"]
 )
 
