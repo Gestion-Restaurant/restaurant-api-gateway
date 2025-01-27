@@ -7,9 +7,9 @@ class Settings(BaseSettings):
     
     # Service URLs (to be configured later)
     CUSTOMER_SERVICE_URL: str = "http://localhost:3000"
-    ORDER_SERVICE_URL: str = "http://localhost:3001"
-    KITCHEN_SERVICE_URL: str = "http://localhost:3002"
-    DELIVERY_SERVICE_URL: str = "http://localhost:3003"
+    KITCHEN_SERVICE_URL: str = "http://localhost:3001"
+    DELIVERY_SERVICE_URL: str = "http://localhost:3002"
+    ORDER_SERVICE_URL: str = "http://localhost:3003"
     
     class Config:
         env_file = ".env"

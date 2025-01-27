@@ -3,18 +3,24 @@ from fastapi import HTTPException
 import httpx
 from app.core.config import settings
 
-async def forward_request(service: str, path: str, method: str = "GET", data: Dict = None) -> Any:
+async def forward_request(
+    service: str, 
+    path: str, 
+    method: str = "GET", 
+    data: Dict = None,
+    headers: Dict[str, str] = None
+) -> Any:
     async with httpx.AsyncClient() as client:
         try:
             url = f"{get_service_url(service)}{path}"
             if method == "GET":
-                response = await client.get(url)
+                response = await client.get(url, headers=headers)
             elif method == "POST":
-                response = await client.post(url, json=data)
+                response = await client.post(url, json=data, headers=headers)
             elif method == "PUT":
-                response = await client.put(url, json=data)
+                response = await client.put(url, json=data, headers=headers)
             elif method == "DELETE":
-                response = await client.delete(url)
+                response = await client.delete(url, headers=headers)
             
             response.raise_for_status()
             return response.json()
