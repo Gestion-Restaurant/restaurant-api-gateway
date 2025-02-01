@@ -17,6 +17,11 @@ async def get_kitchen_orders(restaurant_id: str):
     """Get kitchen dishes"""
     return await forward_request("kitchen", f"/dishes/restaurant/{restaurant_id}", "GET")
 
+@router.get("/dishes/restaurant/{restaurant_id}")
+async def get_kitchen_dishes(restaurant_id: str):
+    """Get kitchen dishes"""
+    return await forward_request("kitchen", f"/dishes/restaurant/{restaurant_id}", "GET")
+
 @router.get("/{order_id}")
 async def get_order(order_id: str):
     """Get order details"""
