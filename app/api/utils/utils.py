@@ -19,6 +19,8 @@ async def forward_request(
                 response = await client.post(url, json=data, headers=headers)
             elif method == "PUT":
                 response = await client.put(url, json=data, headers=headers)
+            elif method == "PATCH":
+                response = await client.patch(url, json=data, headers=headers)
             elif method == "DELETE":
                 response = await client.delete(url, headers=headers)
             
