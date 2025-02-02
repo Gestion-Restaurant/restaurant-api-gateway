@@ -17,6 +17,7 @@ class OrderItem(BaseModel):
     name: str
     quantity: int
     price: float
+    restaurantId: str
 
 class OrderCreate(BaseModel):
     clientId: str
