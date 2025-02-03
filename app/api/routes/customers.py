@@ -66,9 +66,9 @@ async def register(customer: RestaurantCreate | CustomerCreateBase):
 @router.get("/{customer_id}")
 async def get_customer(customer_id: str):
     """Get customer details"""
-    return await forward_request("customers", f"/users/{customer_id}", "GET")
+    return await forward_request("customers", f"/users/byId/{customer_id}", "GET")
 
 @router.put("/{customer_id}")
 async def update_customer(customer_id: str, customer: RestaurantUpdate | CustomerUpdate):
     """Update customer details"""
-    return await forward_request("customers", f"/users/{customer_id}", "PUT", customer.model_dump())
+    return await forward_request("customers", f"/users/byId/{customer_id}", "PUT", customer.model_dump())

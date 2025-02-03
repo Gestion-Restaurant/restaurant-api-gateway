@@ -35,32 +35,32 @@ async def list_orders():
     """List all orders"""
     return await forward_request("orders", "/orders", "GET")
 
-@router.get("/by-id/{id}")
+@router.get("/byId/{id}")
 async def get_order_by_id(id: str):
     """Get order by ID"""
     return await forward_request("orders", f"/orders/by-id/{id}", "GET")
 
-@router.get("/by-id-client/{client_id}")
+@router.get("/ByIdClient/{client_id}")
 async def get_orders_by_client(client_id: str):
     """Get orders by client ID"""
-    return await forward_request("orders", f"/orders/by-id-client/{client_id}", "GET")
+    return await forward_request("orders", f"/orders/ByIdClient/{client_id}", "GET")
 
 @router.post("/")
 async def create_order(order: OrderCreate):
     """Create a new order"""
     return await forward_request("orders", "/orders", "POST", order.model_dump())
 
-@router.put("/by-id/{id}")
+@router.put("/byId/{id}")
 async def update_order(id: str, order: OrderCreate):
     """Update order"""
     return await forward_request("orders", f"/orders/by-id/{id}", "PUT", order.model_dump())
 
-@router.patch("/by-id/{id}")
+@router.patch("/byId/{id}")
 async def update_order_status(id: str, status: OrderStatus):
     """Update order status"""
-    return await forward_request("orders", f"/orders/by-id/{id}", "PATCH", status.model_dump())
+    return await forward_request("orders", f"/orders/byId/{id}", "PATCH", status.model_dump())
 
-@router.delete("/by-id/{id}")
-async def delete_order(id: str):
-    """Delete order"""
-    return await forward_request("orders", f"/orders/by-id/{id}", "DELETE")
+@router.get("/restaurant/{restaurant_id}")
+async def get_restaurant_orders(restaurant_id: str):
+    """Get orders by restaurant ID"""
+    return await forward_request("orders", f"/orders/restaurant/{restaurant_id}", "GET")
