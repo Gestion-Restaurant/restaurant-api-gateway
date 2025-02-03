@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
 from app.core.config import settings
 from app.api.routes import customers, orders, kitchen, delivery
+from app.api.utils.auth_middleware import auth_middleware
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -11,6 +12,9 @@ app = FastAPI(
     docs_url="/doc",
     openapi_url="/openapi.json"
 )
+
+# Middleware registration
+app.middleware("http")(auth_middleware())
 
 # CORS configuration
 app.add_middleware(

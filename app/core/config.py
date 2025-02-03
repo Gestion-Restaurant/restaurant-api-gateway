@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     ORDER_SERVICE_URL: str = "http://localhost:3002"
     DELIVERY_SERVICE_URL: str = "http://localhost:3003"
     
+    JWT_SECRET: str
+
     class Config:
         env_file = ".env"
 
