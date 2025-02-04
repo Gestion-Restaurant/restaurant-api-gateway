@@ -50,15 +50,10 @@ async def create_order(order: OrderCreate):
     """Create a new order"""
     return await forward_request("orders", "/orders", "POST", order.model_dump())
 
-@router.put("/byId/{id}")
-async def update_order(id: str, order: OrderCreate):
-    """Update order"""
-    return await forward_request("orders", f"/orders/by-id/{id}", "PUT", order.model_dump())
-
 @router.patch("/byId/{id}")
 async def update_order_status(id: str, status: OrderStatus):
     """Update order status"""
-    return await forward_request("orders", f"/orders/byId/{id}", "PATCH", status.model_dump())
+    return await forward_request("orders", f"/orders/ById/{id}", "PATCH", status.model_dump())
 
 @router.get("/restaurant/{restaurant_id}")
 async def get_restaurant_orders(restaurant_id: str):

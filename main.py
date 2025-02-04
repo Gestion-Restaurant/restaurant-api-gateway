@@ -13,9 +13,6 @@ app = FastAPI(
     openapi_url="/openapi.json"
 )
 
-# Middleware registration
-app.middleware("http")(auth_middleware())
-
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,

@@ -1,7 +1,12 @@
 from fastapi import APIRouter
 from app.api.utils.utils import forward_request
+from pydantic import BaseModel
 
 router = APIRouter()
+
+class DeliveryAssignment(BaseModel):
+    deliveryPersonId: str
+
 
 @router.get("", include_in_schema=True)
 async def get_deliveries():
@@ -23,12 +28,17 @@ async def update_delivery_status(order_id: str, status: str):
         {"status": status}
     )
 
-@router.post("/assign/{order_id}")
-async def assign_delivery(order_id: str, delivery_person_id: str):
+@router.post("/assign/{id}")
+async def assign_delivery(id: str, assignment: DeliveryAssignment):
     """Assign delivery person"""
     return await forward_request(
         "delivery", 
-        f"/deliveries/assign/{order_id}", 
+        f"/deliveries/assignForDelivery?orderId={id}",
         "POST", 
-        {"deliveryPersonId": delivery_person_id}
+        assignment.model_dump()
     )
+    
+@router.get("/deliveryPerson/{delivery_person_id}")
+async def get_delivery_by_person(delivery_person_id: str):
+    """Get delivery by delivery person ID"""
+    return await forward_request("delivery", f"/deliveries/deliveryPerson/{delivery_person_id}", "GET")
